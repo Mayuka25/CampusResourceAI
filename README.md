@@ -91,12 +91,14 @@ The allocation engine uses a weighted scoring system with a maximum score of 100
 | Utilization Efficiency |      20 |
 | **Total**              | **100** |
 
+
+
 Why this approach?
 
 Instead of randomly selecting an available facility, the system evaluates multiple factors and selects the most suitable resource.
 
 For example:
-
+```text
 Student Requirement → 55
 Facility Type → Classroom
 Projector → Required
@@ -114,12 +116,16 @@ Evaluate Capacity & Equipment
 Calculate AI Score
         ↓
 Recommend Best Facility
+```
+
+
 
 🔴 Conflict Detection & Automatic Rerouting
 
 CampusResourceAI prevents double booking by checking existing bookings before allocating a facility.
 
 If a requested facility is already occupied:
+```text
 Requested Facility
        ↓
 Already Booked?
@@ -133,8 +139,11 @@ Remove from Candidate Pool
 🤖 AI REROUTING
        ↓
 Find Best Available Alternative
+```
 
 The system therefore maintains conflict-free resource allocation.
+
+
 
 📊 Admin Analytics
 
@@ -154,7 +163,10 @@ Current and upcoming bookings
 
 The system can also generate a PDF Resource Utilization Report for administrative use.
 
+
+
 ✨ Key Features
+
 🧠 Intelligent Allocation
 
 Automatically selects the most suitable facility using weighted constraint-based scoring.
