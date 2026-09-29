@@ -60,7 +60,7 @@ After filtering unavailable or unsuitable facilities, the AI engine ranks the re
 
 ### Allocation Flow
 
-
+```text
 Event Request
       ↓
 Hard Constraint Filtering
