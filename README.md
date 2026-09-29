@@ -76,8 +76,7 @@ Best Facility Selection
 Alternative Recommendations
       ↓
 Booking & Analytics
-
-'''
+```
 
 
 🤖 AI Allocation Engine
@@ -190,21 +189,30 @@ Provides a centralized interface for resource monitoring and allocation.
 
 🛠️ Technology Stack
 Frontend
+
 HTML5
 CSS3
 JavaScript
 Bootstrap
 Chart.js
+
 Backend
+
 Python
 Flask
+
 Database
+
 SQLite
+
 AI / Optimization
+
 Constraint-based filtering
 Weighted scoring algorithm
 Resource utilization analysis
+
 Deployment
+
 Render
 Gunicorn
 
