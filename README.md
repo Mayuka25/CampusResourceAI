@@ -78,59 +78,59 @@ Alternative Recommendations
 Booking & Analytics
 ```
 
+---
 
-🤖 AI Allocation Engine
+## 🤖 AI Allocation Engine
 
-The allocation engine uses a weighted scoring system with a maximum score of 100
-| Criterion              |  Weight |
-| ---------------------- | ------: |
-| Capacity Fit           |      30 |
-| Projector Requirement  |      15 |
-| AC Requirement         |      15 |
-| Facility Type          |      20 |
-| Utilization Efficiency |      20 |
-| **Total**              | **100** |
+The allocation engine uses a weighted scoring system with a maximum score of **100**.
 
+| Criterion | Weight |
+|---|---:|
+| Capacity Fit | 30 |
+| Projector Requirement | 15 |
+| AC Requirement | 15 |
+| Facility Type | 20 |
+| Utilization Efficiency | 20 |
+| **Total** | **100** |
 
+### How It Works
 
-Why this approach?
-
-Instead of randomly selecting an available facility, the system evaluates multiple factors and selects the most suitable resource.
+The system first removes facilities that fail mandatory requirements.
 
 For example:
+
 ```text
-Student Requirement → 55
+Requested Students → 55
 Facility Type → Classroom
 Projector → Required
 AC → Required
 Time → 2:00 PM – 3:00 PM
-
-        ↓
-
-Check Availability
-        ↓
-Remove Conflicting Facilities
-        ↓
-Evaluate Capacity & Equipment
-        ↓
-Calculate AI Score
-        ↓
-Recommend Best Facility
 ```
 
+The system then:
 
+1. Checks facility availability.
+2. Detects overlapping bookings.
+3. Removes facilities with insufficient capacity.
+4. Removes facilities without required equipment.
+5. Calculates a score for feasible facilities.
+6. Selects the highest-scoring facility.
+7. Provides alternative recommendations.
 
-🔴 Conflict Detection & Automatic Rerouting
+---
+
+## 🔴 Conflict Detection & Automatic Rerouting
 
 CampusResourceAI prevents double booking by checking existing bookings before allocating a facility.
 
 If a requested facility is already occupied:
+
 ```text
 Requested Facility
        ↓
 Already Booked?
        ↓
-     YES
+      YES
        ↓
 🚨 CONFLICT DETECTED
        ↓
@@ -141,91 +141,292 @@ Remove from Candidate Pool
 Find Best Available Alternative
 ```
 
-The system therefore maintains conflict-free resource allocation.
+The conflicting facility is automatically excluded from the candidate pool, and the system searches for another feasible resource.
 
+This allows the system to maintain conflict-free facility allocation.
 
+---
 
-📊 Admin Analytics
+## ✨ Key Features
 
-The analytics dashboard provides administrators with information such as:
+### 🧠 Intelligent Facility Allocation
 
-Total facilities
-Total allocations
-Resource coverage
-Total resource hours
-Facility-wise utilization
-Most-used facilities
-Under-utilized facilities
-High-demand facilities
-Allocation history
-Resource distribution
-Current and upcoming bookings
+Automatically identifies the most suitable facility based on multiple requirements instead of selecting a room randomly.
 
-The system can also generate a PDF Resource Utilization Report for administrative use.
+### 🔒 Conflict Prevention
 
+Prevents overlapping bookings and double allocation of the same facility.
 
+### 🔄 Automatic Alternative Recommendation
 
-✨ Key Features
+If the requested facility is unavailable, the system automatically searches for suitable alternatives.
 
-🧠 Intelligent Allocation
+### 📊 Utilization Analytics
 
-Automatically selects the most suitable facility using weighted constraint-based scoring.
+Provides administrators with facility usage information and resource-demand insights.
 
-🔒 Conflict Prevention
+### 📄 PDF Utilization Reports
 
-Prevents overlapping bookings and double allocation of facilities.
+Administrators can generate a structured PDF report containing resource utilization and allocation history.
 
-🔄 Automatic Alternatives
+### ⚡ Real-Time Availability Checking
 
-If a facility is unavailable, the system recommends suitable alternatives automatically.
+Checks existing bookings before confirming a new allocation.
 
-📈 Utilization Analytics
+### 🏢 Multiple Facility Types
 
-Tracks facility usage and identifies utilization patterns.
+Supports:
 
-📄 PDF Reports
+- Classrooms
+- Laboratories
+- Seminar Halls
+- Sports Facilities
 
-Administrators can generate a structured resource utilization report.
+### 📱 Interactive Dashboard
 
-⚡ Real-Time Availability
+Provides a centralized interface for monitoring facilities, allocations, and utilization.
 
-Facility availability is checked against existing bookings before allocation.
+---
 
-🏢 Multi-Resource Support
+## 📊 Admin Analytics
 
-Supports classrooms, laboratories, seminar halls, and sports facilities.
+The analytics dashboard provides:
 
-📱 Interactive Dashboard
+- Total facilities
+- Total allocations
+- Resource coverage
+- Total resource hours
+- Facility-wise utilization
+- Most-used facility
+- Under-utilized facilities
+- High-demand facilities
+- Allocation history
+- Resource distribution
+- Current bookings
+- Upcoming bookings
+- Completed bookings
 
-Provides a centralized interface for resource monitoring and allocation.
+The administrator can also generate a **Resource Utilization Report in PDF format**.
 
-🛠️ Technology Stack
-Frontend
+---
 
-HTML5
-CSS3
-JavaScript
-Bootstrap
-Chart.js
+## 🛠️ Technology Stack
 
-Backend
+### Frontend
 
-Python
-Flask
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap
+- Chart.js
 
-Database
+### Backend
 
-SQLite
+- Python
+- Flask
 
-AI / Optimization
+### Database
 
-Constraint-based filtering
-Weighted scoring algorithm
-Resource utilization analysis
+- SQLite
 
-Deployment
+### AI / Optimization
 
-Render
-Gunicorn
+- Constraint-based filtering
+- Weighted multi-factor scoring
+- Availability checking
+- Utilization analysis
 
+### Deployment
 
+- Render
+- Gunicorn
+
+---
+
+## 📁 Project Structure
+
+```text
+CampusResourceAI/
+│
+├── app.py
+├── allocator.py
+├── database.py
+├── campus.db
+├── requirements.txt
+│
+└── templates/
+    ├── index.html
+    ├── allocate.html
+    └── analytics.html
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Mayuka25/CampusResourceAI.git
+```
+
+### 2. Open the project directory
+
+```bash
+cd CampusResourceAI
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run the application
+
+```bash
+python app.py
+```
+
+### 5. Open in browser
+
+```text
+http://127.0.0.1:5000
+```
+
+---
+
+## 🗄️ Database
+
+The application uses SQLite to manage campus resources and bookings.
+
+### Facilities Table
+
+Stores:
+
+- Facility name
+- Facility type
+- Capacity
+- Projector availability
+- AC availability
+
+### Bookings Table
+
+Stores:
+
+- Facility
+- Date
+- Start time
+- End time
+- Event name
+
+The system checks time overlap before confirming a booking.
+
+---
+
+## 🔌 API Endpoints
+
+| Endpoint | Method | Purpose |
+|---|---|---|
+| `/` | GET | Dashboard |
+| `/allocate` | GET | Resource allocation page |
+| `/analytics` | GET | Analytics dashboard |
+| `/api/facilities` | GET | Get all facilities |
+| `/api/bookings` | GET | Get booking records |
+| `/api/recommend` | POST | Get AI facility recommendation |
+| `/api/book` | POST | Create booking |
+| `/api/check-availability` | POST | Check facility availability |
+| `/api/stats` | GET | Get utilization statistics |
+
+---
+
+## 🧪 Example Use Case
+
+### AI & IoT Workshop
+
+A faculty member wants to conduct an AI & IoT workshop.
+
+```text
+Students       : 55
+Facility Type  : Classroom
+Projector      : Required
+AC             : Required
+Time           : 2:00 PM – 3:00 PM
+```
+
+CampusResourceAI evaluates the available facilities.
+
+Facilities that:
+
+- Are already booked
+- Have insufficient capacity
+- Do not have a projector
+- Do not have AC
+
+are automatically excluded.
+
+The remaining feasible facilities are scored using the AI allocation engine.
+
+The highest-scoring facility is recommended.
+
+If the selected facility becomes unavailable, the system detects the conflict and recommends another suitable facility.
+
+---
+
+## 📈 Impact
+
+CampusResourceAI can help educational institutions:
+
+- Reduce manual scheduling effort
+- Prevent resource conflicts
+- Improve facility utilization
+- Reduce under-utilization
+- Handle high-demand facilities
+- Improve administrative decision-making
+- Support data-driven campus planning
+
+---
+
+## 🔮 Future Scope
+
+The system can be extended with:
+
+- Machine learning-based demand prediction
+- Automatic timetable integration
+- Student and faculty authentication
+- Email and notification alerts
+- IoT-based real-time occupancy detection
+- Dynamic room allocation
+- Energy-aware facility selection
+- Predictive maintenance
+- Mobile application
+- Integration with existing college ERP systems
+
+---
+
+## 🏆 Hackathon Value
+
+CampusResourceAI demonstrates how AI and optimization can be applied to a real-world campus management problem.
+
+Instead of simply displaying available rooms, the system:
+
+**Understands → Filters → Scores → Allocates → Monitors → Reports**
+
+This creates an intelligent resource management workflow for campus administrators.
+
+---
+
+## 👥 Team
+
+**Team Name:** byte quenns  
+**Team ID:** TEAM-07
+
+### Project
+
+**CampusResourceAI — Intelligent Resource Allocation System for Campus Facilities**
+
+---
+
+## 📜 License
+
+This project was developed as a hackathon prototype for demonstrating intelligent campus resource allocation and optimization.
